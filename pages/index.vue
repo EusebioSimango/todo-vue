@@ -2,9 +2,9 @@
   <div >
     <h1 class="flex justify-center items-center gap-2 text-center font-black text-2xl p-2 ">
       <PhCalendarCheck :size="32" class="text-black"/> To-Do List</h1>
-    <ul v-if="tasks.length > 0" class="flex flex-col gap-2 p-2 overflow-y-scroll h-[calc(100vh-120px)] scroll-smooth scrollbar-thumb-green-200 scrollbar scrollbar-w-1 scrollbar-h-41scrollbar-rounded">
+    <ul v-if="tasks.length > 0" class="flex flex-col gap-2 p-2 overflow-y-scroll h-[calc(100vh-120px)] scroll-smooth scrollbar-thumb-green-200 scrollbar scrollbar-w-1 scrollbar-h-41scrollbar-rounded overflow-x-hidden">
       <li v-for="task in tasks" :key="task.id">
-        <Task :task=task @click="hanleClick"/>
+        <Task :task=task @delete="removeTask"/>
       </li>
     </ul>
     <div v-else="" class="text-2xl opacity-25 font-medium justify-center h-[calc(100vh-120px)] items-center flex">
@@ -50,40 +50,22 @@
     },
     methods: {
       addTask() {
-        if (this.task.length < 1)
+        if (this.task.length < 1 || this.task.trim() == '')
           return
-        console.log(">_ adding task")
         const newTask = {
           title: this.task,
           id: Date.now()
         }
+        console.log(">_ adding task with id:", newTask.id)
         this.setTasks([...this.tasks, newTask])
         this.task = ''
         console.log(this.tasks)
       },
-      hanleClick(e) {
-        const { tagName } = e.target
-        let id;
-        if ((tagName === 'svg' || tagName === 'path')){
-          console.log('>_ removing task')
-          if (tagName === 'svg') {
-            id = e.target.getAttribute('data-id')
-          } else {
-            id = (tagName === 'path') 
-            ? e.target.parentElement.parentElement.getAttribute('data-id') 
-            : e.parent.getAttribute('data-id')
-          }
-          console.log(id)
-          const updatedTasks = this.tasks.filter((task) => {
-            console.log(task.id, id)
-            return (task.id == id) ? false : task
-          })
-          console.log(updatedTasks, '-', this.tasks)
-          this.setTasks(updatedTasks)
-        }
-        
-      }
-
+      removeTask(id) {
+        console.log('>_ removing task with id:', id)
+        const updatedTasks = this.tasks.filter((task) => task.id === id ? false : task)
+        this.setTasks(updatedTasks)
+      },
     }
   }
 
