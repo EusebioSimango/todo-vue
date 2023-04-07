@@ -1,10 +1,10 @@
 <template>
-	<div class="bg-green-600 font-medium rounded-md px-3 py-2 text-white flex justify-between items-center gap-2 ">
-		<NuxtLink :to="'/'+task.id" class="p-3 overflow-clip text-left">
+	<div class="bg-green-600 font-medium rounded-md p-3 py-2 text-white flex justify-between items-center gap-2 ">
+		<NuxtLink :to="'/'+task.id" class="p-2 overflow-clip text-left outline-green-100">
 			{{task.title}}
 		</NuxtLink>
-		<button>
-			<PhTrash :size="40" :data-id="task.id" @click="$emit('delete', task.id)" class="p-2 del"/>	
+		<button @click="$emit('delete', task.id)" aria-label="remove task" class="outline-2 outline-gray-100  rounded">
+			<PhTrash :size="40" class="p-2"/>	
 		</button>
 	</div>
 </template>

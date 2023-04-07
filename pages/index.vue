@@ -20,7 +20,7 @@
       placeholder="New Task" 
     />
     <button
-      class="rounded-md bg-green-500 p-3 w-[150px]"
+      class="rounded-md bg-green-500 p-3 w-[150px] outline-offset-2 outline-green-400"
       @click="addTask"
     >Add Task</button>
   </div>
