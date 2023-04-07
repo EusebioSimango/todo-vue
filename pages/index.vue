@@ -59,7 +59,6 @@
         console.log(">_ adding task with id:", newTask.id)
         this.setTasks([...this.tasks, newTask])
         this.task = ''
-        console.log(this.tasks)
       },
       removeTask(id) {
         console.log('>_ removing task with id:', id)
