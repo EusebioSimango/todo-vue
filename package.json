@@ -16,6 +16,8 @@
     "tailwindcss": "^3.3.1"
   },
   "dependencies": {
-    "@phosphor-icons/vue": "^2.0.1"
+    "@phosphor-icons/vue": "^2.0.1",
+    "@pinia/nuxt": "^0.4.8",
+    "pinia": "^2.0.34"
   }
 }
